@@ -15,6 +15,27 @@ namespace RegistroOngApp
         public Form1()
         {
             InitializeComponent();
+
+            cmbRol1.Items.Add("Voluntario");
+            cmbRol1.Items.Add("Coordinador");
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbRol1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string rol = cmbRol1.SelectedItem?.ToString();
+
+            MessageBox.Show($"Nombre: {nombre} - Rol: {rol}");
         }
     }
 }
