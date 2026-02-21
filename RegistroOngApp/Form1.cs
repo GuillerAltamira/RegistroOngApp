@@ -33,9 +33,11 @@ namespace RegistroOngApp
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             string nombre = txtNombre.Text;
-            string rol = cmbRol1.SelectedItem?.ToString();
+            string tipo = cmbRol1.SelectedItem?.ToString();
 
-            MessageBox.Show($"Nombre: {nombre} - Rol: {rol}");
+            Usuario usuario = CreadorUsuario.Crear(tipo, nombre);
+
+            MessageBox.Show($"Usuario creado: {usuario.Nombre} - Rol: {usuario.GetRol()}");
         }
     }
 }
