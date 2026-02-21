@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,14 @@ namespace RegistroOngApp
             string tipo = cmbRol1.SelectedItem?.ToString();
 
             Usuario usuario = CreadorUsuario.Crear(tipo, nombre);
+
+            // Guardar en la base de datos
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (Nombre, Rol) VALUES (@Nombre, @Rol)", ConexionDB.Instance.GetConnection()))
+            {
+                cmd.Parameters.AddWithValue("@Nombre", usuario.Nombre);
+                cmd.Parameters.AddWithValue("@Rol", usuario.GetRol());
+                cmd.ExecuteNonQuery();
+            }
 
             MessageBox.Show($"Usuario creado: {usuario.Nombre} - Rol: {usuario.GetRol()}");
         }
